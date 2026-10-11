@@ -18,129 +18,151 @@
 
 ## Project Metadata
 
-* **Project Title:** `[Your Project Title]`
-* **Team Name:** `[Your Team Name]`
-* **Chosen Track:** `[Track 1: Quantum Games & Interactive Puzzles OR Track 2: Open-Domain Optimization & Real-World Solvers]`
-* **Video Presentation Link:** `[Insert YouTube Unlisted / Google Drive / Loom URL here]`
+* **Project Title:** `Qubit Quest — The Quantum Escape Room`
+* **Team Name:** `3Q — Quantum Quest Qubits`
+* **Chosen Track:** `Track 1: Quantum Games & Interactive Puzzles`
+* **Video Presentation Link:** `https://drive.google.com/drive/folders/1Y17OpZS2hwWB8Qj3D2iHTJ25aedYYOWB?usp=sharing`
   *(⚠️ Crucial: Ensure link access is set to "Anyone with the link can view" on Google Drive or "Unlisted / Public" on YouTube. Locked/inaccessible links cannot be scored!)*
-* **Live Demo Timestamp in Video:** `[MM:SS]` *(e.g., "Demo starts at 03:45")*
+* **Live Demo Timestamp in Video:** `00.00` 
 
 ### Team Members (Max 4 members)
 | Name | Email | GitHub Username |
 | :--- | :--- | :--- |
-| `[Member 1 Name]` | `[Email]` | `[@username]` |
-| `[Member 2 Name]` | `[Email]` | `[@username]` |
-| `[Member 3 Name]` | `[Email]` | `[@username]` |
-| `[Member 4 Name]` | `[Email]` | `[@username]` |
+| `Ms.P.Aileen Chris` | `aileencp@hindustanuniv.ac.in` | `@aileencp-coder` |
+| `Dr. B. Monica Jenefer` | `bmonica@hindustanuniv.ac.in` | `monicajenefer.hits@gmail.com` |
+| `Dr. Abisheka PON` | `abishekap@hindustanuniv.ac.in` | `abishekapon@gmail.com` |
 
 ---
 
 ## 1. Project Overview & Motivation
 
 * **Summary (3–4 sentences):**  
-  `[Provide a concise executive summary of what you built. What is the game or optimization dilemma?]`
+  `Qubit Quest — The Quantum Escape Room is an interactive educational game that introduces quantum computing through three missions: superposition, entanglement, and quantum measurement. Players solve quantum challenges by predicting measurement outcomes and verifying them through simulated experiments. The game uses Python, Streamlit, Qiskit, and Qiskit Aer, with a maximum score of 300 points across the three missions. It makes fundamental quantum concepts engaging and accessible without requiring quantum hardware.`
 
 * **Why this problem / game?**  
-  `[Explain why you chose this specific topic. Why is it engaging, practically relevant, or pedagogically meaningful?]`
+  `Quantum computing can be difficult for beginners to understand because quantum states and measurement probabilities are not directly visible. Qubit Quest transforms these abstract ideas into interactive missions with predictions, simulations, feedback, and scoring. The game encourages active learning and helps students connect quantum theory with circuit behavior.`
 
 ---
 
 ## 2. Quantum Architecture & Mechanics
 
 * **Core Quantum Principles Used:**  
-  `[Specify the exact quantum principles at play: e.g., Superposition (H gate), Entanglement (Bell states / CNOT), Measurement Collapse, Interference, or QAOA Cost Hamiltonian.]`
+  `Superposition using the Hadamard gate, entanglement using a Bell-state circuit, quantum measurement, and angle-dependent measurement probabilities using the Ry rotation gate.`
 
 * **How the Quantum Circuit is Integrated:**  
-  `[Explain how quantum states map to your game board, strategy, or optimization problem. How does your Qiskit circuit interact with player input or the optimization loop?]`
+  `The game presents players with quantum challenges and asks them to predict the expected outcomes. Qiskit constructs and executes the quantum circuits using the Qiskit Aer simulator. The resulting measurement statistics are displayed to help players compare their predictions with the simulated behavior. Mission completion and scoring provide feedback on their progress.`
 
 * **Circuit Details:**  
-  * **Number of Qubits:** `[e.g., 4 qubits]`
-  * **Key Gates Used:** `[e.g., H, CX, RZ, Measurement]`
-  * **Primitives Used:** `[e.g., StatevectorSampler, StatevectorEstimator, or Qiskit Aer simulator]`
-  * **Other Technologies Used:** `[e.g., Streamlit for UI, NetworkX for graph generation, Pygame, etc. (Note: Qiskit must power the quantum logic)]`
+  * **Number of Qubits:** `1 qubit for the superposition and measurement concepts; 2 qubits for the entanglement mission.`
+  * **Key Gates Used:** `H, CX/CNOT, Ry, and measurement.`
+  * **Primitives Used:** `Qiskit Aer simulator`
+  * **Other Technologies Used:** `Python, Streamlit, Qiskit, and Qiskit Aer`
 
 ```python
 # Optional: Paste a representative snippet of your core Qiskit circuit code here
 ```
+from qiskit import QuantumCircuit
+from qiskit_aer import AerSimulator
+
+# Superposition mission
+qc = QuantumCircuit(1, 1)
+qc.h(0)
+qc.measure(0, 0)
+
+simulator = AerSimulator()
+result = simulator.run(qc, shots=1000).result()
+counts = result.get_counts()
+
+print("Superposition measurement results:", counts)
 
 ---
 
 ## 3. Repository Structure & How to Run
 
 ### Project Structure
-```text
-├── README.md               # Project documentation (this file)
-├── requirements.txt        # Python dependencies
-├── src/                    # Source code scripts or game application
-│   └── main.py             # Main entry point (or streamlit app)
-├── notebooks/              # Jupyter notebooks containing experiments
-│   └── solution.ipynb      # Main runnable notebook with outputs
-└── references/             # Hackathon reference guides (Track 1 & Track 2)
+```qubit-quest-game-3Q/
+├── README.md
+├── requirements.txt
+├── app.py
+├── src/
+├── notebooks/
+└── references/
 ```
 
 ### Installation & Execution Instructions
 
-> 💡 **Environment Recommendation:** To avoid package conflicts, we strongly suggest using a fresh Python virtual environment or Google Colab:
-> ```bash
-> python -m venv venv
-> source venv/bin/activate    # On Windows: venv\Scripts\activate
-> pip install -r requirements.txt
-> ```
+**Environment Recommendation:** Use a fresh Python virtual environment or Google Colab to avoid dependency conflicts.
 
 1. **Clone the repository:**
+
    ```bash
-   git clone [your-repo-url]
-   cd [your-repo-folder]
+   git clone https://github.com/aileencp-coder/qubit-quest-game-3Q.git
+   cd qubit-quest-game-3Q
    ```
+
 2. **Install dependencies:**
+
    ```bash
    pip install -r requirements.txt
    ```
+
 3. **Run the project / demo:**
+
    ```bash
-   # If running a script or CLI game:
-   python src/main.py
-
-   # If running a Streamlit web app:
-   streamlit run src/app.py
-
-   # Or open the Jupyter Notebook:
-   jupyter notebook notebooks/solution.ipynb
+   streamlit run app.py
    ```
-
----
-
 ## 4. Implementation Walkthrough & Live Demo
 
 * **Walkthrough of Gameplay / Optimization Pipeline:**  
-  `[Describe the user experience or algorithmic workflow step-by-step. What inputs does the user provide, what happens inside the quantum circuit, and what output is produced?]`
+  `Mission 1 — Superposition: Players explore how the Hadamard gate transforms the initial qubit state into a superposition, producing approximately balanced measurement outcomes.
+
+Mission 2 — Entanglement: Players explore a Bell-state circuit prepared using the Hadamard gate and CNOT. The ideal measurement outcomes are correlated, with 00 and 11 observed.
+
+Mission 3 — Measurement Lab: Players investigate how Ry rotations change measurement probabilities. At 0°, the probability of measuring 1 is 0%; at 90°, it is approximately 50%; and at 180°, it is 100%, subject to the circuit's angle convention.
+
+Scoring: Players earn points for successfully completing the missions, with a maximum score of 300 points.
+
+Feedback: The application displays measurement results and mission progress to reinforce learning.`
 
 * **Key Screenshots / Terminal Output:**  
   `[Paste sample terminal output, game screenshots, or optimization convergence plots here to demonstrate that the project runs.]`
+<img width="1911" height="1142" alt="image" src="https://github.com/user-attachments/assets/e75800a8-7cdf-4120-8039-b30d0572d5e7" />
+[3Q _ Qubit Quest Entanglement Result.pdf](https://github.com/user-attachments/files/33303060/3Q._.Qubit.Quest.Entanglement.Result.pdf)
+[3Q _ Qubit Quest Measurement result.pdf](https://github.com/user-attachments/files/33303059/3Q._.Qubit.Quest.Measurement.result.pdf)
+[3Q _ Qubit Quest Superposition Result.pdf](https://github.com/user-attachments/files/33303058/3Q._.Qubit.Quest.Superposition.Result.pdf)
 
 ---
 
 ## 5. Classical vs. Quantum Comparison
 
 * **Classical Baseline / Counterpart:**  
-  `[What classical baseline did you compare against? (e.g., a classical player, a random guesser, a brute-force classical solver, or a naive greedy heuristic)]`
+The player's predictions and expected probability distributions act as the educational baseline against which the Qiskit Aer measurement results are compared.
+
+
 
 * **Comparative Analysis:**  
-  `[How did the quantum approach compare to the classical baseline? For Track 1: Did quantum strategy give an unfair advantage or unique gameplay behavior? For Track 2: What was the approximation ratio (C_quantum / C_optimal) and feasibility yield?]`
+ The project demonstrates how quantum circuits produce measurement distributions associated with superposition, entanglement, and single-qubit rotations. Simulated outcomes are compared with expected theoretical behavior. The project is an educational demonstration of quantum principles and does not claim quantum computational advantage over classical methods.
 
 ---
 
 ## 6. Performance, Results & Limitations
 
 * **Key Results & Observations:**  
-  `[Summarize the main results from your experiments, simulations, or gameplay tests.]`
+  The application provides three interactive missions with a maximum score of 300 points. The superposition circuit produces approximately 50/50 outcomes over sufficiently many shots. The Bell-state circuit produces correlated 00 and 11 outcomes in the ideal simulation. The measurement mission demonstrates how changing the Ry rotation angle changes the probability of observing the state 1.
+
 
 * **Critical Reflection on Limitations:**  
-  `[Be honest and rigorous: What happens if this is scaled to larger qubit counts? How would physical quantum noise, gate errors, and decoherence affect your solution on real NISQ hardware? Acknowledging limitations demonstrates true scientific understanding!]`
-
+  Critical Reflection on Limitations:
+The current application uses a simulator rather than physical quantum hardware. Measurement results are statistical, so finite-shot experiments may differ slightly from theoretical probabilities. Larger circuits can require more computational resources, and real quantum devices introduce gate errors, noise, and decoherence. Future improvements could include noise-model experiments, additional missions, and execution on available quantum hardware.
 ---
 
 ## 7. References & Acknowledgments
 
-* `[Cite any open-source libraries, GitHub repositories, or research papers you referenced during the hackathon.]`
-* `[Acknowledge team contributions and tools used.]`
+
+Qiskit documentation: https://docs.quantum.ibm.com/
+
+Qiskit Aer documentation: https://qiskit.github.io/qiskit-aer/
+
+Streamlit documentation: https://docs.streamlit.io/
+
+Acknowledgments: Qubit Quest was developed by Team 3Q — Quantum Quest Qubits for the IIIT Kottayam Quantum Hackathon. The project uses Python, Streamlit, Qiskit, and Qiskit Aer to provide an interactive introduction to quantum computing.
